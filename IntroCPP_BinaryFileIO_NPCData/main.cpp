@@ -53,22 +53,36 @@ int main(int argc, char* argv[])
 
         if (IsKeyPressed(KEY_LEFT))
         {
+            //Decrement Record
             currentRecordIdx--;
+
+            //Check if the currentRecordIdx is on a existing record
             if (currentRecordIdx < 0)
             {
                 currentRecordIdx = 0;
             }
+
+            //Set Current Record
             currentRecord = data.GetRecord(currentRecordIdx);
             recordTexture = LoadTextureFromImage(currentRecord->image);
         }
 
         if (IsKeyPressed(KEY_RIGHT))
         {
+            //Increment Record
             currentRecordIdx++;
+
+            //Check if the currentRecordIdx is on a existing record
             if (currentRecordIdx >= data.GetRecordCount())
             {
-                currentRecordIdx = data.GetRecordCount();
+                // TASK 3 DONE
+                //Changed
+                //currentRecordIdx = data.GetRecordCount();
+                //To
+                currentRecordIdx -= 1;
             }
+
+            //Set Current Record
             currentRecord = data.GetRecord(currentRecordIdx);
             recordTexture = LoadTextureFromImage(currentRecord->image);
         }
