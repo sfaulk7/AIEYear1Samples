@@ -85,12 +85,17 @@ void DataFile::Load(string filename)
 		char* imgdata = new char[imageSize];
 		infile.read(imgdata, imageSize);
 
-		Image img = LoadImageEx((Color*)imgdata, width, height);
-		char* name = new char[nameSize];
+		Image img = LoadImageEx((Color*)imgdata, width, height); 
+		char* name = new char[nameSize + 1]; //This is where it makes name
+		name[nameSize] = '\0'; //Adds null terminator to end of name
+
 		int age = 0;
 				
-		infile.read((char*)name, nameSize);
+		infile.read((char*)name, nameSize); //This is where it gets the name from the file
 		infile.read((char*)&age, ageSize);
+
+
+		
 
 		Record* r = new Record();
 		r->image = img;
