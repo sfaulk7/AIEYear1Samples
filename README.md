@@ -1,5 +1,5 @@
-# AIE Year1 Samples
+Debugging Practice in C++
 
-The **RaylibStarterCpp.zip** contains a project already set up to use Raylib with all libraries and includes in place.
+The only file used is IntroCPP_BinaryFileIO_NPCData
 
-It does **not** include GLM or any other convenience libraries, you will need to add those yourself if you want to use them.
+It is also the release
