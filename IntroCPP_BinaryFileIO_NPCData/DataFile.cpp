@@ -27,6 +27,21 @@ void DataFile::AddRecord(string imageFilename, string name, int age)
 
 DataFile::Record* DataFile::GetRecord(int index)
 {
+	std::fstream file;
+	
+	DataFile::Record* item;
+
+	file.open("npc_data.dat", std::ios::in | std::ios::binary);
+
+	if (file.is_open())
+	{
+		file.seekg(sizeof(DataFile::Record*) * index, std::ios::beg);
+
+		file.read((char*)&item, sizeof(DataFile::Record*));
+	}
+
+	file.close();
+
 	return records[index];
 }
 
