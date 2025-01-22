@@ -14,6 +14,8 @@ protected:
 
 	bool m_isLoaded;
 	bool m_isDirty;		// indicates if we've already processed a collision response for this critter
+
+	bool m_inPool;
 	
 public:
 	Critter();
@@ -41,6 +43,10 @@ public:
 	void SetDirty() { m_isDirty = true; }
 
 	bool IsDead() { return m_isLoaded == false; }
+
+	void ToPool();
+	bool InPool() { return m_inPool == true; };
+	void OutPool();
 
 };
 

@@ -20,8 +20,8 @@ void Critter::Init(Vector2 position, Vector2 velocity, float radius, const char*
 	m_position = position;
 	m_velocity = velocity;
 	m_radius = radius;
-	
-	m_texture = LoadTexture(texture);	
+
+	m_texture = LoadTexture(texture);
 
 	m_isLoaded = true;
 }
@@ -46,8 +46,23 @@ void Critter::Update(float dt)
 
 void Critter::Draw()
 {
-	if (m_isLoaded == false)
+	if (m_isLoaded == false || m_inPool == true)
 		return;
 
-	DrawTexture(m_texture, m_position.x, m_position.y, WHITE);
+	//DrawTexture(m_texture, m_position.x, m_position.y, WHITE);
+	//converted to
+	DrawTexture(m_texture, m_position.x - (m_texture.width / 2), m_position.y - (m_texture.height / 2), WHITE);
+	//So now all texture's position values are at the center of the texture rather than the top left
+}
+
+void Critter::ToPool()
+{
+	Vector2 pool = { -100, -100 };
+	m_inPool = true;
+	m_position = pool;
+}
+
+void Critter::OutPool()
+{
+	m_inPool = false;
 }
