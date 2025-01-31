@@ -89,19 +89,26 @@ void DataFile::Load(string filename)
 		int ageSize = 0;
 		int width = 0, height = 0, format = 0, imageSize = 0;
 
+		//Gets the width and height of an image
 		infile.read((char*)&width, sizeof(int));
 		infile.read((char*)&height, sizeof(int));
 
+		//Defines the imageSize
 		imageSize = sizeof(Color) * width * height;
 
+		//Gets the size of Name and age
 		infile.read((char*)&nameSize, sizeof(int));
 		infile.read((char*)&ageSize, sizeof(int));
 
+		//Puts the imageSize into imgData to read the pixel count
 		char* imgdata = new char[imageSize];
 		infile.read(imgdata, imageSize);
 
+		//Loads image
 		Image img = LoadImageEx((Color*)imgdata, width, height); 
-		char* name = new char[nameSize + 1]; //This is where it makes name
+
+		//This is where it makes name
+		char* name = new char[nameSize + 1]; 
 		name[nameSize] = '\0'; //Adds null terminator to end of name
 
 		int age = 0;

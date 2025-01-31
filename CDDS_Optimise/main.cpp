@@ -146,6 +146,7 @@ int main(int argc, char* argv[])
 
         // update the critters
         // (dirty flags will be cleared during update)
+        int poolCheck = 0;
         for (int i = 0; i < CRITTER_COUNT; i++)
         {
             critters[i].Update(delta);
@@ -186,13 +187,20 @@ int main(int argc, char* argv[])
                 //critters[i].Destroy();
                 //Put it in an object pool
                 critters[i].ToPool();
-                crittersInPool++;
             }
+
+            if (critters[i].IsInPool() == true)
+            {
+                poolCheck++;
+            }
+
+            crittersInPool = poolCheck;
         }
                 
         // check for critter-on-critter collisions
+        
         for (int i = 0; i < CRITTER_COUNT; i++)
-        {            
+        {           
             for (int j = 0; j < CRITTER_COUNT; j++){
                 if (i == j || critters[i].IsDirty()) // note: the other critter (j) could be dirty - that's OK
                     continue;
@@ -220,6 +228,7 @@ int main(int argc, char* argv[])
             }
         }
 
+        //Critter Respawn
         timer -= delta;
         if (timer <= 0)
         {
@@ -228,7 +237,7 @@ int main(int argc, char* argv[])
             // find any dead critters and spit them out (respawn)
             for (int i = 0; i < CRITTER_COUNT; i++)
             {
-                if (critters[i].InPool())
+                if (critters[i].IsInPool() == true)
                 {
                     Vector2 normal = Vector2Normalize(destroyer.GetVelocity());
 
@@ -240,9 +249,8 @@ int main(int argc, char* argv[])
                     //critters[i].Init(pos, Vector2Scale(normal, -MAX_VELOCITY), 12, "res/10.png");
                     //Converted to an object pool
                     critters[i].OutPool();
-                    crittersInPool--;
                     critters[i].SetPosition(pos);
-
+                    
                     break;
                 }
             }
@@ -315,10 +323,10 @@ int main(int argc, char* argv[])
         //----------------------------------------------------------------------------------
     }
     
-    for (int i = 0; i < CRITTER_COUNT; i++)
-    {
-        critters[i].Destroy();
-    }
+    //for (int i = 0; i < CRITTER_COUNT; i++)
+    //{
+    //    critters[i].Destroy();
+    //}
 
     // De-Initialization
     //--------------------------------------------------------------------------------------   

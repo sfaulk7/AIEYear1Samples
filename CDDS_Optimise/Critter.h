@@ -42,10 +42,11 @@ public:
 	bool IsDirty() { return m_isDirty; }
 	void SetDirty() { m_isDirty = true; }
 
+	[[Depricated("This should not be used anywhere due to replacing it with an object pool")]]
 	bool IsDead() { return m_isLoaded == false; }
 
 	void ToPool();
-	bool InPool() { return m_inPool == true; };
+	bool IsInPool() { return m_inPool; };
 	void OutPool();
 
 };

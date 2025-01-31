@@ -34,7 +34,7 @@ void Critter::Destroy()
 
 void Critter::Update(float dt)
 {
-	if (m_isLoaded == false)
+	if (m_isLoaded == false || m_inPool == true)
 		return;
 
 	m_position.x += m_velocity.x * dt;
@@ -57,9 +57,7 @@ void Critter::Draw()
 
 void Critter::ToPool()
 {
-	Vector2 pool = { -100, -100 };
 	m_inPool = true;
-	m_position = pool;
 }
 
 void Critter::OutPool()
