@@ -5,7 +5,7 @@
 
 class Critter
 {
-protected:	
+protected:
 	Vector2 m_position;
 	Vector2 m_velocity;
 	float m_radius;
@@ -15,8 +15,6 @@ protected:
 	bool m_isLoaded;
 	bool m_isDirty;		// indicates if we've already processed a collision response for this critter
 
-	bool m_inPool;
-	
 public:
 	Critter();
 	~Critter();
@@ -42,12 +40,8 @@ public:
 	bool IsDirty() { return m_isDirty; }
 	void SetDirty() { m_isDirty = true; }
 
-	[[Depricated("This should not be used anywhere due to replacing it with an object pool")]]
 	bool IsDead() { return m_isLoaded == false; }
-
-	void ToPool();
-	bool IsInPool() { return m_inPool; };
-	void OutPool();
+	void SetDead() { m_isLoaded = false; }
+	void SetAlive() { m_isLoaded = true; }
 
 };
-

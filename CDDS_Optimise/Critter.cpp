@@ -34,7 +34,7 @@ void Critter::Destroy()
 
 void Critter::Update(float dt)
 {
-	if (m_isLoaded == false || m_inPool == true)
+	if (m_isLoaded == false)
 		return;
 
 	m_position.x += m_velocity.x * dt;
@@ -46,21 +46,11 @@ void Critter::Update(float dt)
 
 void Critter::Draw()
 {
-	if (m_isLoaded == false || m_inPool == true)
-		return;
+	//if (m_isLoaded == false)
+	//	return;
 
 	//DrawTexture(m_texture, m_position.x, m_position.y, WHITE);
 	//converted to
 	DrawTexture(m_texture, m_position.x - (m_texture.width / 2), m_position.y - (m_texture.height / 2), WHITE);
 	//So now all texture's position values are at the center of the texture rather than the top left
-}
-
-void Critter::ToPool()
-{
-	m_inPool = true;
-}
-
-void Critter::OutPool()
-{
-	m_inPool = false;
 }
