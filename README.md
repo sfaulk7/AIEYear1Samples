@@ -1,5 +1,6 @@
-Debugging Practice in C++
+Optimazation project in C++
 
-The only project used is IntroCPP_BinaryFileIO_NPCData
+Only uses the CDDS_Optimize file
 
-It is also the release
+Link to release:
+https://github.com/sfaulk7/AIEYear1Samples/releases/tag/v2.0
