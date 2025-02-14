@@ -33,7 +33,7 @@ template<typename T>
 inline void ObjectPool<T>::SetInactive(T& value)
 {
 	InactiveList.pushBack(&value);
-	//ActiveList.remove(&value);
+	ActiveList.remove(&value);
 }
 
 template<typename T>

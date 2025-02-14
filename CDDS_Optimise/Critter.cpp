@@ -46,8 +46,8 @@ void Critter::Update(float dt)
 
 void Critter::Draw()
 {
-	//if (m_isLoaded == false)
-	//	return;
+	if (m_isLoaded == false)
+		return;
 
 	//DrawTexture(m_texture, m_position.x, m_position.y, WHITE);
 	//converted to
