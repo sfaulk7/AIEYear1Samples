@@ -215,8 +215,8 @@ int main(int argc, char* argv[])
         // draw the destroyer
         destroyer.Draw();
 
-        DrawText(TextFormat("%i", CritterPool.ActiveList.getLength()), 50, 100, 100, GREEN);
-        DrawText(TextFormat("%i", CritterPool.InactiveList.getLength()), 50, 200, 100, RED);
+        //DrawText(TextFormat("%i", CritterPool.ActiveList.getLength()), 50, 100, 100, GREEN);
+        //DrawText(TextFormat("%i", CritterPool.InactiveList.getLength()), 50, 200, 100, RED);
 
         DrawFPS(10, 10);
         //DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
