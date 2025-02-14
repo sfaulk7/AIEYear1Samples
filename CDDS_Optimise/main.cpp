@@ -179,7 +179,7 @@ int main(int argc, char* argv[])
         {
             timer = 1;
 
-            if (CritterPool.GetInactiveLength() >= 1)
+            if (CritterPool.InactiveList.getLength() >= 1)
             {
                 for (int i = 0; i < CRITTER_COUNT; i++)
                 {

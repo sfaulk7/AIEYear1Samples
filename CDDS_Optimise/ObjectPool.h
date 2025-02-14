@@ -10,7 +10,6 @@ public:
 	void AddToPool(T& value, int index);
 	void SetInactive(T& value);
 	void Activate(int index);
-	int GetInactiveLength();
 
 	List<T*> ActiveList;
 	List<T*> InactiveList;
@@ -41,10 +40,4 @@ inline void ObjectPool<T>::Activate(int index)
 {
 	ActiveList.insert(InactiveList.popFront(), index);
 	
-}
-
-template<typename T>
-inline int ObjectPool<T>::GetInactiveLength()
-{
-	return InactiveList.getLength();
 }
