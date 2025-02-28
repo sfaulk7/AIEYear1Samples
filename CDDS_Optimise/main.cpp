@@ -66,9 +66,7 @@ int main(int argc, char* argv[])
             12, "res/10.png");
 
         CritterPool.AddToPool(critters[i], i);
-
     }
-
 
     Critter destroyer;
     Vector2 velocity = { -100 + (rand() % 200), -100 + (rand() % 200) };
@@ -114,6 +112,10 @@ int main(int argc, char* argv[])
         {
             critters[i].Update(delta);
 
+            //Checks if the critter is in the inactive position so that it doesn't get put back on screen
+            if (critters[i].GetX() == -100)
+                continue;
+
             // check each critter against screen bounds
             if (critters[i].GetX() < 0) {
                 critters[i].SetX(0);
@@ -137,10 +139,10 @@ int main(int argc, char* argv[])
             float dist = Vector2Distance(critters[i].GetPosition(), destroyer.GetPosition());
             if (dist < critters[i].GetRadius() + destroyer.GetRadius())
             {
-                CritterPool.SetInactive(critters[i]);
                 critters[i].SetDead();
                 Vector2 InactivePosition = { -100, -100 };
                 critters[i].SetPosition(InactivePosition);
+                CritterPool.SetInactive(critters[i]);
             }
         }
 
@@ -179,7 +181,7 @@ int main(int argc, char* argv[])
         {
             timer = 1;
 
-            if (CritterPool.InactiveList.getLength() >= 1)
+            if (CritterPool.InactiveListCount() >= 1)
             {
                 for (int i = 0; i < CRITTER_COUNT; i++)
                 {
@@ -191,9 +193,9 @@ int main(int argc, char* argv[])
                         pos = Vector2Add(pos, Vector2Scale(normal, -50));
 
                         //Reactivate the first inactive Critter
-                        CritterPool.InactiveList.first()->SetAlive();
-                        CritterPool.InactiveList.first()->SetPosition(pos);
-                        CritterPool.InactiveList.first()->SetVelocity(Vector2Scale(normal, -MAX_VELOCITY));
+                        critters[i].SetAlive();
+                        critters[i].SetPosition(pos);
+                        critters[i].SetVelocity(Vector2Scale(normal, -MAX_VELOCITY));
                         CritterPool.Activate(i);
                         break;
                     }
